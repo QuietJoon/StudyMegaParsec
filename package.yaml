@@ -1,0 +1,62 @@
+name:                StudyMegaParsec
+version:             0.0.0.1
+github:              "QuietJoon/StudyMegaParsec"
+license:             BSD3
+author:              "YongJoon Joe"
+maintainer:          "YongJoon Joe <developer@yongjoon.net>"
+copyright:           ""
+
+extra-source-files:
+- README.md
+- ChangeLog.md
+
+description:         Please see the README on GitHub at <https://github.com/QuietJoon/StudyMegaParsec#readme>
+
+dependencies:
+- base >= 4.7 && < 5
+- containers
+- text
+- text-show
+- text-show-instances
+- vector
+- megaparsec
+
+default-extensions:
+- OverloadedStrings
+
+library:
+  source-dirs:
+  - src
+
+executables:
+  Study-Case1-exe:
+    main:                Main.hs
+    source-dirs:         apps/Case1
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - StudyMegaParsec
+
+tests:
+  Test-Spec:
+    main:                Spec.hs
+    source-dirs:
+    - test
+    default-extensions:
+    - TemplateHaskell
+    ghc-options:
+    - -threaded
+    - -rtsopts
+    - -with-rtsopts=-N
+    dependencies:
+    - StudyMegaParsec
+    - HUnit
+    - QuickCheck
+    - silently
+    - test-framework
+    - test-framework-hunit
+    - test-framework-quickcheck2
+    - test-framework-th
+    - call-stack

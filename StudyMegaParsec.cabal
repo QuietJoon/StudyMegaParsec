@@ -1,0 +1,91 @@
+cabal-version: 1.12
+
+-- This file has been generated from package.yaml by hpack version 0.34.2.
+--
+-- see: https://github.com/sol/hpack
+
+name:           StudyMegaParsec
+version:        0.0.0.1
+description:    Please see the README on GitHub at <https://github.com/QuietJoon/StudyMegaParsec#readme>
+homepage:       https://github.com/QuietJoon/StudyMegaParsec#readme
+bug-reports:    https://github.com/QuietJoon/StudyMegaParsec/issues
+author:         YongJoon Joe
+maintainer:     YongJoon Joe <developer@yongjoon.net>
+license:        BSD3
+build-type:     Simple
+extra-source-files:
+    README.md
+    ChangeLog.md
+
+source-repository head
+  type: git
+  location: https://github.com/QuietJoon/StudyMegaParsec
+
+library
+  exposed-modules:
+      Data
+      Example
+      Parser
+      Show
+      Type
+  other-modules:
+      Paths_StudyMegaParsec
+  hs-source-dirs:
+      src
+  default-extensions: OverloadedStrings
+  build-depends:
+      base >=4.7 && <5
+    , containers
+    , megaparsec
+    , text
+    , text-show
+    , text-show-instances
+    , vector
+  default-language: Haskell2010
+
+executable Study-Case1-exe
+  main-is: Main.hs
+  other-modules:
+      Paths_StudyMegaParsec
+  hs-source-dirs:
+      apps/Case1
+  default-extensions: OverloadedStrings
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      StudyMegaParsec
+    , base >=4.7 && <5
+    , containers
+    , megaparsec
+    , text
+    , text-show
+    , text-show-instances
+    , vector
+  default-language: Haskell2010
+
+test-suite Test-Spec
+  type: exitcode-stdio-1.0
+  main-is: Spec.hs
+  other-modules:
+      Paths_StudyMegaParsec
+  hs-source-dirs:
+      test
+  default-extensions: OverloadedStrings TemplateHaskell
+  ghc-options: -threaded -rtsopts -with-rtsopts=-N
+  build-depends:
+      HUnit
+    , QuickCheck
+    , StudyMegaParsec
+    , base >=4.7 && <5
+    , call-stack
+    , containers
+    , megaparsec
+    , silently
+    , test-framework
+    , test-framework-hunit
+    , test-framework-quickcheck2
+    , test-framework-th
+    , text
+    , text-show
+    , text-show-instances
+    , vector
+  default-language: Haskell2010

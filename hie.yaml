@@ -1,0 +1,10 @@
+cradle:
+  stack:
+    - path: "./src"
+      component: "StudyMegaParsec:lib"
+
+    - path: "./test"
+      component: "Test-Spec:lib"
+
+    - path: "./apps/Case1/Main.hs"
+      component: "StudyMegaParsec:exe:Study-Case1-exe"
