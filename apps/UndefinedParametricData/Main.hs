@@ -38,10 +38,26 @@ main = do
   print $ parse (parseWithUndefinedData parseIIdx) "" "ABCI[0]def"
   parseTest (parseWithUndefinedData parseIIdx) "ABCI[0]def"
 
+  putStrLn $ "\n\nParse with ParseIIdx: ABCI[2]def"
+  print $ parse (parseWithUndefinedData parseIIdx) "" "ABCI[2]def"
+  parseTest (parseWithUndefinedData parseIIdx) "ABCI[2]def"
+
   putStrLn $ "\n\nParse with ParseSIdx: ABCS[\"DEF\"]def"
   print $ parse (parseWithUndefinedData parseSIdx) "" "ABCS[\"DEF\"]def"
   parseTest (parseWithUndefinedData parseSIdx) "ABCS[\"DEF\"]def"
 
+  putStrLn $ "\n\nParse with ParseSIdx: ABCS[\"DF\"]def"
+  print $ parse (parseWithUndefinedData parseSIdx) "" "ABCS[\"DF\"]def"
+  parseTest (parseWithUndefinedData parseSIdx) "ABCS[\"DF\"]def"
+
+  putStrLn $ "\n\nParse with ParseIIdx: ABCS[\"DEF\"]def"
+  print $ parse (parseWithUndefinedData parseIIdx) "" "ABCS[\"DEF\"]def"
+  parseTest (parseWithUndefinedData parseIIdx) "ABCS[\"DEF\"]def"
+
   putStrLn $ "\n\nParse with ParseVP: ABCVP<HDD:=:S[\"DEF\"]>def"
   print $ parse (parseWithUndefinedData parseVP) "" "ABCVP<HDD:=:S[\"DEF\"]>def"
   parseTest (parseWithUndefinedData parseVP) "ABCVP<HDD:=:S[\"DEF\"]>def"
+
+  putStrLn $ "\n\nParse with ParseVP: ABCVP<HDD:=:S[\"DEF\"]def"
+  print $ parse (parseWithUndefinedData parseVP) "" "ABCVP<HDD:=:S[\"DEF\"]def"
+  parseTest (parseWithUndefinedData parseVP) "ABCVP<HDD:=:S[\"DEF\"]def"
