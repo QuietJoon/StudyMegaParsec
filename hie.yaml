@@ -8,3 +8,6 @@ cradle:
 
     - path: "./apps/Case1/Main.hs"
       component: "StudyMegaParsec:exe:Study-Case1-exe"
+
+    - path: "./apps/UndefinedParametricData/Main.hs"
+      component: "StudyMegaParsec:exe:Study-UndefinedParametricData-exe"
