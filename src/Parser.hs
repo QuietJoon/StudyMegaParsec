@@ -3,16 +3,17 @@ module Parser where
 import Data
 import Type
 
+import Control.Monad (void)
 import Text.Megaparsec
 import Text.Megaparsec.Char
 
 parseVP :: Parser VP
 parseVP = do
-  _ <- string "VP<"
+  void (string "VP<")
   p <- parsePlace
-  _ <- string ":=:"
+  void (string ":=:")
   i <- parseIdx
-  _ <- string ">"
+  void (string ">")
   return $ VP p i
 
 parsePlace :: Parser Place
@@ -27,9 +28,9 @@ parseIdx = try parseIIdx <|> parseSIdx
 
 parseIIdx :: Parser Idx
 parseIIdx = do
-  _ <- string "I["
+  void (string "I[")
   i <- parseSomeInt
-  _ <- string "]"
+  void (string "]")
   return $ IIdx i
 
 parseSomeInt :: Parser Int
@@ -41,9 +42,9 @@ parseSomeInt =
 
 parseSIdx :: Parser Idx
 parseSIdx = do
-  _ <- string "S[\""
+  void (string "S[\"")
   s <- parseSomeStr
-  _ <- string "\"]"
+  void (string "\"]")
   return $ SIdx s
 
 parseSomeStr :: Parser String

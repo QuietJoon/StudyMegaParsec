@@ -6,19 +6,18 @@ import Parser
 import Show
 import Type
 
+import Control.Monad (void)
 import Text.Megaparsec
 import Text.Megaparsec.Char
 
-data A a = A a deriving Show
+data A a = A a deriving (Show)
 
 parseWithUndefinedData :: Parser a -> Parser (A a)
 parseWithUndefinedData parseSomething = do
-  _ <- string "ABC"
+  void (string "ABC")
   a <- parseSomething
-  _ <- string "def"
+  void (string "def")
   return $ A a
-
-
 
 testVariablePosition = parseTest (string "VP<" :: Parser String)
 
