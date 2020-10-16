@@ -11,3 +11,6 @@ cradle:
 
     - path: "./apps/UndefinedParametricData/Main.hs"
       component: "StudyMegaParsec:exe:Study-UndefinedParametricData-exe"
+
+    - path: "./apps/ParseString/Main.hs"
+      component: "StudyMegaParsec:exe:Study-ParseString-exe"
