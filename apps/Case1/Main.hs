@@ -20,6 +20,8 @@ main = do
   testVariablePosition $ show vp2
   testVariablePosition $ show hdd
 
+  putStrLn "----------------------------------------------------------------"
+
   putStrLn $ "\n\nParseVP: " <> show vp1
   print $ parse parseVP "" (show vp1)
   parseTest parseVP (show vp1)
