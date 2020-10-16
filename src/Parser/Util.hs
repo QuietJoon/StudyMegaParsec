@@ -18,19 +18,47 @@ parseSignedInt :: Parser Int
 parseSignedInt = L.signed Char.space parseInt
 
 
-parseChar :: Parser (Maybe Char)
-parseChar = satisfy (/= '\"') >>= \c -> return $ Just c
+parseChar' :: Parser (Maybe Char)
+parseChar' = satisfy (/= '\"') >>= \c -> return $ Just c
+
+parseQuotedString' :: Parser String
+parseQuotedString' = do
+  void (Char.char '\"')
+  xs <- many parseChar'
+  let cs = map fromJust $ filter isJust xs
+  void (Char.char '\"')
+  return cs
+
+parseNonQuotedString' :: Parser String
+parseNonQuotedString' = do
+  xs <- many parseChar'
+  let cs = map fromJust $ filter isJust xs
+  return cs
+
+
+-- Get from https://stackoverflow.com/questions/52319817/parse-between-quotes-with-haskell
+
+escape :: Parser String
+escape = do
+    d <- Char.char '\\'
+    c <- oneOf ['\\', '\"', '0', 'n', 'r', 'v', 't', 'b', 'f']
+    return [d, c]
+
+nonEscape :: Parser Char
+nonEscape = noneOf ['\\', '\"', '\0', '\n', '\r', '\v', '\t', '\b', '\f']
 
 parseQuotedString :: Parser String
-parseQuotedString = do
-  void (Char.char '\"')
-  xs <- many parseChar
-  let cs = map fromJust $ filter isJust xs
-  void (Char.char '\"')
-  return cs
+parseQuotedString =
+    let inner = fmap return (try nonEscape) <|> escape
+    in  do
+      Char.char '"'
+      strings <- many inner
+      Char.char '"'
+      return $ concat strings
 
 parseNonQuotedString :: Parser String
-parseNonQuotedString = do
-  xs <- many parseChar
-  let cs = map fromJust $ filter isJust xs
-  return cs
+parseNonQuotedString =
+    let inner = fmap return (try nonEscape) <|> escape
+    in  do
+      strings <- many inner
+      return $ concat strings
