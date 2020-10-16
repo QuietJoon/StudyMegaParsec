@@ -2,6 +2,7 @@ module Parser where
 
 import Data
 import Parser.Type
+import Parser.Util
 
 import Control.Monad (void)
 import Data.Maybe ( fromJust, isJust )
@@ -31,7 +32,7 @@ parseIdx = try parseIIdx <|> parseSIdx
 parseIIdx :: Parser Idx
 parseIIdx = do
   void (string "I[")
-  i <- decimal
+  i <- parseSignedInt
   void (string "]")
   return $ IIdx i
 
@@ -69,20 +70,3 @@ parseSomeStr =
     [ "ABC" <$ string "ABC"
     , "DEF" <$ string "DEF"
     ]
-
-parseChar :: Parser (Maybe Char)
-parseChar = satisfy (/= '\"') >>= \c -> return $ Just c
-
-parseQuotedString :: Parser String
-parseQuotedString = do
-  void (char '\"')
-  xs <- many parseChar
-  let cs = map fromJust $ filter isJust xs
-  void (char '\"')
-  return cs
-
-parseNonQuotedString :: Parser String
-parseNonQuotedString = do
-  xs <- many parseChar
-  let cs = map fromJust $ filter isJust xs
-  return cs

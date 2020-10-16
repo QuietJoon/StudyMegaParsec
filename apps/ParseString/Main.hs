@@ -4,6 +4,7 @@ import Data
 import Example
 import Parser
 import Parser.Type
+import Parser.Util
 import Show
 
 import Control.Monad (void)
