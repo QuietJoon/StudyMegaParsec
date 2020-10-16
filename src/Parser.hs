@@ -1,7 +1,7 @@
 module Parser where
 
 import Data
-import Type
+import Parser.Type
 
 import Control.Monad (void)
 import Text.Megaparsec

@@ -26,8 +26,9 @@ library
       Data
       Example
       Parser
+      Parser.Type
+      Parser.Util
       Show
-      Type
   other-modules:
       Paths_StudyMegaParsec
   hs-source-dirs:

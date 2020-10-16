@@ -3,8 +3,8 @@ module Main where
 import Data
 import Example
 import Parser
+import Parser.Type
 import Show
-import Type
 
 import Text.Megaparsec
 import Text.Megaparsec.Char
